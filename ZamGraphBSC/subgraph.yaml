@@ -1,0 +1,126 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ZamTokenBSC
+    network: bsc
+    source:
+      address: "0xBbcF57177D8752B21d080bf30a06CE20aD6333F8"
+      abi: ZamTokenBSC
+      startBlock: 9626712
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - TotalSupply
+        - Circulation
+        - Blocked
+        - Holder
+        - HolderCount
+        - TransferCount
+        - TransactionCount
+      abis:
+        - name: ZamTokenBSC
+          file: ./abis/ZamTokenBSC.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/token.ts
+  - kind: ethereum/contract
+    name: ZamBridgeBSC
+    network: bsc
+    source:
+      address: "0xa89f6B45D48A925B75697882CC28Eed955b59E84"
+      abi: ZamBridgeBSC
+      startBlock: 9625561
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - TotalSupply
+        - Holder
+        - HolderCount
+        - TransferCount
+        - TransactionCount
+      abis:
+        - name: ZamBridgeBSC
+          file: ./abis/ZamBridgeBSC.json
+      eventHandlers:
+        - event: SwapFilled(indexed address,indexed bytes32,indexed address,uint256)
+          handler: handleSwapFilledBSC
+      file: ./src/bridge.ts  
+  - kind: ethereum/contract
+    name: ZamStacking
+    network: bsc
+    source:
+      address: "0xDAdB4a98597323C1a33058D6A17f23720ffcC740"
+      abi: ZamStacking
+      startBlock: 12839405 
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Stacker
+        - StackerCount
+      abis:
+        - name: ZamStacking
+          file: ./abis/ZamStacking.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/stacking.ts  
+  - kind: ethereum/contract
+    name: ZamBSCVestingPool
+    network: bsc
+    source:
+      address: "0x3ccaD1a87f5DdCD7Af315D64006E2E9b4Dd7e807"
+      abi: ZamBSCVestingPool
+      startBlock: 11682152
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Vester
+        - VesterCount 
+        - Circulation
+        - Blocked
+      abis:
+        - name: ZamBSCVestingPool
+          file: ./abis/ZamBSCVestingPool.json
+        - name: ZamToken
+          file: ./abis/ZamTokenBSC.json
+      eventHandlers:
+        - event: BeneficiaryAdded(indexed address,address,uint256)
+          handler: handleBeneficiaryAdded
+      file: ./src/vestingpool.ts  
+templates:
+  - name: TokenVesting
+    kind: ethereum/contract
+    network: bsc
+    source:
+      abi: TokenVesting
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/tokenvesting.ts
+      entities:
+        - Vester
+        - VesterCount
+        - Circulation
+        - Blocked
+      abis:
+        - name: TokenVesting
+          file: ./abis/TokenVesting.json
+      eventHandlers:
+        - event: Released(uint256)
+          handler: handleReleased

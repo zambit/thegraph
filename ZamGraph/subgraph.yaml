@@ -1,0 +1,109 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: ZamToken
+    network: mainnet
+    source:
+      address: "0xd373576a9e738F37Dc6882328358Ff69c4cAf4c6"
+      abi: ZamToken
+      startBlock: 12200442
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - TotalSupply
+        - Circulation
+        - Blocked
+        - TransferCount
+        - TransactionCount
+        - Holder
+        - HolderCount
+        - Participant
+        - ParticipantCount
+        - Vester
+        - VesterCount
+      abis:
+        - name: ZamToken
+          file: ./abis/ZamToken.json
+        - name: ZamVestingPool
+          file: ./abis/ZamVestingPool.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/token.ts
+  - kind: ethereum/contract
+    name: ZamVestingPool
+    network: mainnet
+    source:
+      address: "0x5dAAFBE1a286c7E03Dcb3F4734415a23A6A2723a"
+      abi: ZamVestingPool
+      startBlock: 12200442
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Vester
+        - VesterCount 
+        - Circulation
+        - Blocked
+      abis:
+        - name: ZamVestingPool
+          file: ./abis/ZamVestingPool.json
+        - name: ZamToken
+          file: ./abis/ZamToken.json
+      eventHandlers:
+        - event: BeneficiaryAdded(indexed address,address,uint256)
+          handler: handleBeneficiaryAdded
+      file: ./src/vestingpool.ts
+  - kind: ethereum/contract
+    name: ZamBridgeETH
+    network: mainnet
+    source:
+      address: "0x0d02e94fB14f19b5E04E4CC91f62c1A80B09a6B6"
+      abi: ZamBridgeETH
+      startBlock: 12200442
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Bridge
+        - BridgeETH
+      abis:
+        - name: ZamBridgeETH
+          file: ./abis/ZamBridgeETH.json
+      eventHandlers:
+        - event: SwapFilled(indexed address,indexed bytes32,indexed address,uint256)
+          handler: handleSwapFilledETH
+        - event: SwapStarted(indexed address,indexed address,uint256,uint256)
+          handler: handleSwapStartedETH
+      file: ./src/bridge.ts   
+templates:
+  - name: TokenVesting
+    kind: ethereum/contract
+    network: mainnet
+    source:
+      abi: TokenVesting
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/tokenvesting.ts
+      entities:
+        - Vester
+        - VesterCount
+        - Circulation
+        - Blocked
+      abis:
+        - name: TokenVesting
+          file: ./abis/TokenVesting.json
+      eventHandlers:
+        - event: Released(uint256)
+          handler: handleReleased
+      

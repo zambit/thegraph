@@ -1,0 +1,54 @@
+specVersion: 0.0.2
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: PancakeFactory
+    network: bsc
+    source:
+      address: "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73"
+      abi: PancakeFactory
+      startBlock: 12240000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Pair
+        - Token
+      abis:
+        - name: PancakeFactory
+          file: ./abis/PancakeFactory.json
+        - name: BEP20
+          file: ./abis/BEP20.json
+      eventHandlers:
+        - event: PairCreated(indexed address,indexed address,address,uint256)
+          handler: handlePairCreated
+      file: ./src/factory.ts
+templates:
+  - name: PancakePair
+    kind: ethereum/contract
+    network: bsc
+    source:
+      abi: PancakePair
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      file: ./src/pair.ts
+      entities:
+        - Pair
+      abis:
+        - name: PancakePair
+          file: ./abis/PancakePair.json
+      eventHandlers:
+        - event: Mint(indexed address,uint256,uint256)
+          handler: handleMint
+        - event: Burn(indexed address,uint256,uint256,indexed address)
+          handler: handleBurn
+        - event: Swap(indexed address,uint256,uint256,uint256,uint256,indexed address)
+          handler: handleSwap
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Sync(uint112,uint112)
+          handler: handleSync

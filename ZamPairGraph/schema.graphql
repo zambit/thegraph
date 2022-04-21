@@ -1,0 +1,108 @@
+type Token @entity {
+  id: ID!
+
+  symbol: String!
+  name: String!
+  decimals: BigInt!
+}
+
+
+type Pair @entity {
+  id: ID!
+
+  token0: Token! 
+  token1: Token! 
+
+  reserve0: BigDecimal!
+  reserve1: BigDecimal!
+
+  totalSupply: BigDecimal!
+
+  token0Price: BigDecimal!
+  token1Price: BigDecimal!
+
+  volumeToken0: BigDecimal!
+  volumeToken1: BigDecimal!
+}
+
+type PairHourData @entity {
+  id: ID!
+
+  pair: Pair!
+
+  periodBegin: BigInt!
+  periodEnd: BigInt!
+  hour: BigInt!
+  day: BigInt!
+  month: BigInt!
+  year: BigInt!
+
+  token0Price: BigDecimal!
+  token1Price: BigDecimal!
+  reserve0: BigDecimal!
+  reserve1: BigDecimal!
+  totalSupply: BigDecimal!
+
+  hourlyVolumeToken0: BigDecimal!
+  hourlyVolumeToken1: BigDecimal!
+}
+
+type PairDayData @entity {
+  id: ID!
+
+  pair: Pair!
+  
+  periodBegin: BigInt!
+  periodEnd: BigInt!
+  day: BigInt!
+  month: BigInt!
+  year: BigInt!
+
+  token0Price: BigDecimal!
+  token1Price: BigDecimal!
+  reserve0: BigDecimal!
+  reserve1: BigDecimal!
+  totalSupply: BigDecimal!
+
+  dailyVolumeToken0: BigDecimal!
+  dailyVolumeToken1: BigDecimal!
+}
+
+type PairWeekData @entity {
+  id: ID!
+
+  pair: Pair!
+
+  periodBegin: BigInt!
+  periodEnd: BigInt!
+  week: BigInt!
+
+  token0Price: BigDecimal!
+  token1Price: BigDecimal!
+  reserve0: BigDecimal!
+  reserve1: BigDecimal!
+  totalSupply: BigDecimal!
+
+  weeklyVolumeToken0: BigDecimal!
+  weeklyVolumeToken1: BigDecimal!
+}
+
+type PairMonthData @entity {
+  id: ID!
+
+  pair:Pair!
+
+  periodBegin: BigInt!
+  periodEnd: BigInt!
+  month: BigInt!
+  year: BigInt!
+
+  token0Price: BigDecimal!
+  token1Price: BigDecimal!
+  reserve0: BigDecimal!
+  reserve1: BigDecimal!
+  totalSupply: BigDecimal!
+
+  monthlyVolumeToken0: BigDecimal!
+  monthlyVolumeToken1: BigDecimal!
+}

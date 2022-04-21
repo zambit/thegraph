@@ -1,0 +1,576 @@
+type Circulation @entity {
+  id: ID!
+  circulation: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type CirculationHourData @entity {
+  id: ID!
+  circulation: BigInt!
+
+  timestamp: BigInt!
+
+  hour: BigInt!
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type CirculationDayData @entity {
+  id: ID!
+  circulation: BigInt!
+
+  timestamp: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type CirculationWeekData @entity {
+  id: ID!
+  circulation: BigInt!
+
+  timestamp: BigInt!
+
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type CirculationMonthData @entity {
+  id: ID!
+  circulation: BigInt!
+
+  timestamp: BigInt!
+
+  month: BigInt!
+  year: BigInt!
+}
+
+type TotalSupply @entity{
+  id: ID!
+  supply: BigInt!
+  minted: BigInt!
+  burned: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type Blocked @entity {
+  id: ID!
+  blocked: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type BlockedHourData @entity {
+  id: ID!
+  blocked: BigInt!
+
+  timestamp: BigInt!
+
+  hour: BigInt!
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type BlockedDayData @entity {
+  id: ID!
+  blocked: BigInt!
+
+  timestamp: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type BlockedWeekData @entity {
+  id: ID!
+  blocked: BigInt!
+
+  timestamp: BigInt!
+
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type BlockedMonthData @entity {
+  id: ID!
+  blocked: BigInt!
+
+  timestamp: BigInt!
+
+  month: BigInt!
+  year: BigInt!
+}
+
+type TransferCount @entity {
+  id: ID!
+  count: Int!
+  totalTransferred: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type TransferHourData @entity {
+  id: ID!
+  count: Int!
+  totalCount: BigInt!
+  transferred: BigInt!
+  totalTransferred: BigInt!
+
+  timestamp: BigInt!
+
+  hour: BigInt!
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type TransferDayData @entity {
+  id: ID!
+  count: Int!
+  totalCount: BigInt!
+  transferred: BigInt!
+  totalTransferred: BigInt!
+
+  timestamp: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type TransferWeekData @entity {
+  id: ID!
+  count: Int!
+  totalCount: BigInt!
+  transferred: BigInt!
+  totalTransferred: BigInt!
+
+  timestamp: BigInt!
+  
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type TransferMonthData @entity {
+  id: ID!
+  count: Int!
+  totalCount: BigInt!
+  transferred: BigInt!
+  totalTransferred: BigInt!
+
+  timestamp: BigInt!
+  
+  month: BigInt!
+  year: BigInt!
+}
+
+type TransactionCount @entity {
+  id: ID!
+  count: Int!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type TransactionHourCount @entity {
+  id: ID!
+  count: Int!
+  totalCount: BigInt!
+
+  timestamp: BigInt!
+
+  hour: BigInt!
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type TransactionDayCount @entity {
+  id: ID!
+  count: Int!
+  totalCount: BigInt!
+
+  timestamp: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type TransactionWeekCount @entity {
+  id: ID!
+  count: Int!
+  totalCount: BigInt!
+
+  timestamp: BigInt!
+
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type TransactionMonthCount @entity {
+  id: ID!
+  count: Int!
+  totalCount: BigInt!
+
+  timestamp: BigInt!
+
+  month: BigInt!
+  year: BigInt!
+}
+
+type Holder @entity {
+  id: ID!
+  address: String!
+  balance: BigInt!
+  transactionCount: Int!
+}
+
+type HolderCount @entity {
+  id: ID!
+  count: Int!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type HolderHourCount @entity {
+  id: ID!
+  totalCount: Int!
+
+  timestamp: BigInt!
+
+  hour: BigInt!
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type HolderDayCount @entity {
+  id: ID!
+  totalCount: Int!
+
+  timestamp: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type HolderWeekCount @entity {
+  id: ID!
+  totalCount: Int!
+
+  timestamp: BigInt!
+
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type HolderMonthCount @entity {
+  id: ID!
+  totalCount: Int!
+
+  timestamp: BigInt!
+
+  month: BigInt!
+  year: BigInt!
+}
+
+type Participant @entity {
+  id: ID!
+  address: String!
+  transactionCount: Int!
+}
+
+type ParticipantCount @entity {
+  id: ID!
+  count: Int!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type ParticipantHourCount @entity {
+  id: ID!
+  totalCount: Int!
+
+  timestamp: BigInt!
+
+  hour: BigInt!
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type ParticipantDayCount @entity {
+  id: ID!
+  totalCount: Int!
+
+  timestamp: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type ParticipantWeekCount @entity {
+  id: ID!
+  totalCount: Int!
+
+  timestamp: BigInt!
+
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type ParticipantMonthCount @entity {
+  id: ID!
+  totalCount: Int!
+
+  timestamp: BigInt!
+
+  month: BigInt!
+  year: BigInt!
+}
+
+type Vester @entity {
+  id: ID!
+  address: String!
+  balance: BigInt!
+  balance_contract: BigInt!
+  contract: String!
+}
+
+type VestingCount @entity {
+  id: ID!
+  count: Int!
+  totalAssests: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type VestingHourCount @entity {
+  id: ID!
+  totalCount: Int!
+  totalAssests: BigInt!
+
+  timestamp: BigInt!
+
+  hour: BigInt!
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type VestingDayCount @entity {
+  id: ID!
+  totalCount: Int!
+  totalAssests: BigInt!
+
+  timestamp: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type VestingWeekCount @entity {
+  id: ID!
+  totalCount: Int!
+  totalAssests: BigInt!
+
+  timestamp: BigInt!
+
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type VestingMonthCount @entity {
+  id: ID!
+  totalCount: Int!
+  totalAssests: BigInt!
+
+  timestamp: BigInt!
+
+  month: BigInt!
+  year: BigInt!
+}
+
+type Bridge @entity {
+  id: ID!
+  totalTransferred: BigInt!
+  transferredToETH: BigInt!
+  transferredToBSC: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type BridgeHour @entity {
+  id: ID!
+  transferredToETH: BigInt!
+  transferredToBSC: BigInt!
+  totalTransferredToETH: BigInt!
+  totalTransferredToBSC: BigInt!
+
+  timestamp: BigInt!
+
+  hour: BigInt!
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type BridgeDay @entity {
+  id: ID!
+  transferredToETH: BigInt!
+  transferredToBSC: BigInt!
+  totalTransferredToETH: BigInt!
+  totalTransferredToBSC: BigInt!
+
+  timestamp: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type BridgeWeek @entity {
+  id: ID!
+  transferredToETH: BigInt!
+  transferredToBSC: BigInt!
+  totalTransferredToETH: BigInt!
+  totalTransferredToBSC: BigInt!
+
+  timestamp: BigInt!
+
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type BridgeMonth @entity {
+  id: ID!
+  transferredToETH: BigInt!
+  transferredToBSC: BigInt!
+  totalTransferredToETH: BigInt!
+  totalTransferredToBSC: BigInt!
+
+  timestamp: BigInt!
+
+  month: BigInt!
+  year: BigInt!
+}
+
+type BridgeETH @entity {
+  id: ID!
+  transferredToETH: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type BridgeETHHourData @entity {
+  id: ID!
+  transferredToETH: BigInt!
+  totalTransferredToETH: BigInt!
+
+  timestamp: BigInt!
+
+  hour: BigInt!
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type BridgeETHDayData @entity {
+  id: ID!
+  transferredToETH: BigInt!
+  totalTransferredToETH: BigInt!
+
+  timestamp: BigInt!
+
+  day: BigInt!
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type BridgeETHWeekData @entity {
+  id: ID!
+  transferredToETH: BigInt!
+  totalTransferredToETH: BigInt!
+
+  timestamp: BigInt!
+
+  week: BigInt!
+  month: BigInt!
+  year: BigInt!
+}
+
+type BridgeETHMonthData @entity {
+  id: ID!
+  transferredToETH: BigInt!
+  totalTransferredToETH: BigInt!
+
+  timestamp: BigInt!
+
+  month: BigInt!
+  year: BigInt!
+}
