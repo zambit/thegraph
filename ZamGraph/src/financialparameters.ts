@@ -1007,29 +1007,6 @@ export function updateParameters(timestamp: BigInt): void {
     if (internal_225 != null) { balance_internal_225 = internal_225.balance }
     if (internal_226 != null) { balance_internal_226 = internal_226.balance }
     if (internal_227 != null) { balance_internal_227 = internal_227.balance }
-    if (internal_228 != null) { balance_internal_228 = internal_228.balance }
-    if (internal_229 != null) { balance_internal_229 = internal_229.balance }
-    if (internal_230 != null) { balance_internal_230 = internal_230.balance }
-    if (internal_231 != null) { balance_internal_231 = internal_231.balance }
-    if (internal_232 != null) { balance_internal_232 = internal_232.balance }
-    if (internal_233 != null) { balance_internal_233 = internal_233.balance }
-    if (internal_234 != null) { balance_internal_234 = internal_234.balance }
-    if (internal_235 != null) { balance_internal_235 = internal_235.balance }
-    if (internal_236 != null) { balance_internal_236 = internal_236.balance }
-    if (internal_237 != null) { balance_internal_237 = internal_237.balance }
-    if (internal_238 != null) { balance_internal_238 = internal_238.balance }
-    if (internal_239 != null) { balance_internal_239 = internal_239.balance }
-    if (internal_240 != null) { balance_internal_240 = internal_240.balance }
-    if (internal_241 != null) { balance_internal_241 = internal_241.balance }
-    if (internal_242 != null) { balance_internal_242 = internal_242.balance }
-    if (internal_243 != null) { balance_internal_243 = internal_243.balance }
-    if (internal_244 != null) { balance_internal_244 = internal_244.balance }
-    if (internal_245 != null) { balance_internal_245 = internal_245.balance }
-    if (internal_246 != null) { balance_internal_246 = internal_246.balance }
-    if (internal_247 != null) { balance_internal_247 = internal_247.balance }
-    if (internal_248 != null) { balance_internal_248 = internal_248.balance }
-    if (internal_249 != null) { balance_internal_249 = internal_249.balance }
-    if (internal_250 != null) { balance_internal_250 = internal_250.balance }
 
     circulation.circulation = totalSupply.supply.minus(balance_creator).minus(balance_stacker_reward).minus(balance_pool).
         minus(balance_vesting).minus(balance_bridge).minus(balance_team).minus(balance_ecosystem).minus(balance_marketing).
